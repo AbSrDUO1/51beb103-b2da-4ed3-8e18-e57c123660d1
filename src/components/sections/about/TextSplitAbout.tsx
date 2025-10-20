@@ -45,8 +45,8 @@ const TextSplitAbout = ({
       className={cls("w-full py-30", className)}
     >
       <div className={cls("w-content-width mx-auto flex flex-col gap-30", containerClassName)}>
-        <div className="flex flex-col lg:flex-row gap-3 lg:gap-15">
-          <div className="w-full lg:w-1/2">
+        <div className="flex flex-col md:flex-row gap-3 md:gap-15">
+          <div className="w-full md:w-1/2">
             <TextAnimation
               type={theme.defaultTextAnimation}
               text={title}
@@ -55,14 +55,14 @@ const TextSplitAbout = ({
             />
           </div>
 
-          <div className="w-full lg:w-1/2 flex flex-col gap-6">
+          <div className="w-full md:w-1/2 flex flex-col gap-6">
             {description.map((desc, index) => (
               <TextAnimation
                 key={index}
                 type={theme.defaultTextAnimation}
                 text={desc}
                 variant="words-trigger"
-                className={cls("text-base lg:text-2xl leading-[1.3] text-foreground/75", descriptionClassName)}
+                className={cls("text-base md:text-2xl leading-[1.3] text-foreground/75", descriptionClassName)}
               />
             ))}
 

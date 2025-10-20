@@ -7,7 +7,13 @@ import ProductCardOne from '@/components/sections/product/ProductCardOne';
 import ContactCenter from '@/components/sections/contact/ContactCenter';
 import FooterBase from '@/components/sections/footer/FooterBase';
 
-const assetMap = [{"id":"hero-image","url":"https://images.pexels.com/photos/26492562/pexels-photo-26492562.jpeg?auto=compress&cs=tinysrgb&h=650&w=940","alt":"Charming café interior in Geelong featuring vinyl records, blackboard menu, and retro decor."},{"id":"about-image","url":"https://images.pexels.com/photos/1015568/pexels-photo-1015568.jpeg?auto=compress&cs=tinysrgb&h=650&w=940","alt":"Two men enjoying a relaxed conversation with laptops in a cozy Brazilian café."},{"id":"product-image-1","url":"https://images.pexels.com/photos/2159128/pexels-photo-2159128.jpeg?auto=compress&cs=tinysrgb&h=650&w=940","alt":"Barista using syphon method to prepare coffee in a café setting. Indoors with coffee equipment."},{"id":"product-image-2","url":"https://images.pexels.com/photos/34321386/pexels-photo-34321386.jpeg?auto=compress&cs=tinysrgb&h=650&w=940","alt":"espresso coffee shot - Photo by Novkov Visuals"},{"id":"product-image-3","url":"https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&h=650&w=940","alt":"Close-up of a barista pouring milk to create latte art in a coffee cup."}];
+const assetMap = [
+  { "id": "hero-image", "url": "https://images.pexels.com/photos/26492562/pexels-photo-26492562.jpeg?auto=compress&cs=tinysrgb&h=650&w=940", "alt": "Charming café interior in Geelong featuring vinyl records, blackboard menu, and retro decor." },
+  { "id": "about-image", "url": "https://images.pexels.com/photos/1015568/pexels-photo-1015568.jpeg?auto=compress&cs=tinysrgb&h=650&w=940", "alt": "Two men enjoying a relaxed conversation with laptops in a cozy Brazilian café." },
+  { "id": "product-image-1", "url": "https://images.pexels.com/photos/2159128/pexels-photo-2159128.jpeg?auto=compress&cs=tinysrgb&h=650&w=940", "alt": "Barista using syphon method to prepare coffee in a café setting. Indoors with coffee equipment." },
+  { "id": "product-image-2", "url": "https://images.pexels.com/photos/34321386/pexels-photo-34321386.jpeg?auto=compress&cs=tinysrgb&h=650&w=940", "alt": "espresso coffee shot - Photo by Novkov Visuals" },
+  { "id": "product-image-3", "url": "https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&h=650&w=940", "alt": "Close-up of a barista pouring milk to create latte art in a coffee cup." }
+];
 
 export default function Home() {
   return (
@@ -22,7 +28,7 @@ export default function Home() {
             { name: "Home", id: "home" },
             { name: "About", id: "about" },
             { name: "Menu", id: "menu" },
-            { name: "Contact", id: "contact" },
+            { name: "Contact", id: "contact" }
           ]}
           brandName="Coffee Bliss"
         />
@@ -32,7 +38,7 @@ export default function Home() {
           <HeroBillboard
             title="Welcome to Coffee Bliss"
             description="Experience the best coffee in town"
-            imageSrc={assetMap.find(a => a.id === 'hero-image')?.url}
+            imageSrc={assetMap.find(a => a.id === 'hero-image')?.url ?? '/public/images/placeholder.webp'}
             buttons={[{ text: "Explore Menu", href: "menu" }]}
           />
         </div>
@@ -43,7 +49,7 @@ export default function Home() {
             title="About Us"
             description={[
               "Coffee Bliss is dedicated to offering the finest coffee experience.",
-              "Our mission is to bring the best taste and atmosphere to our community.",
+              "Our mission is to bring the best taste and atmosphere to our community."
             ]}
             buttons={[{ text: "Learn More", href: "about" }]}
           />
@@ -54,9 +60,9 @@ export default function Home() {
           <ProductCardOne
             title="Our Coffee Collection"
             products={[
-              { id: "coffee-1", name: "Brewed Coffee", price: "$3.00", imageSrc: assetMap.find(a => a.id === 'product-image-1')?.url },
-              { id: "coffee-2", name: "Espresso", price: "$2.50", imageSrc: assetMap.find(a => a.id === 'product-image-2')?.url },
-              { id: "coffee-3", name: "Latte", price: "$4.00", imageSrc: assetMap.find(a => a.id === 'product-image-3')?.url },
+              { id: "coffee-1", name: "Brewed Coffee", price: "$3.00", imageSrc: assetMap.find(a => a.id === 'product-image-1')?.url ?? '/public/images/placeholder.webp' },
+              { id: "coffee-2", name: "Espresso", price: "$2.50", imageSrc: assetMap.find(a => a.id === 'product-image-2')?.url ?? '/public/images/placeholder.webp' },
+              { id: "coffee-3", name: "Latte", price: "$4.00", imageSrc: assetMap.find(a => a.id === 'product-image-3')?.url ?? '/public/images/placeholder.webp' }
             ]}
           />
         </div>
@@ -77,20 +83,8 @@ export default function Home() {
         <div className="mx-auto px-4 md:px-6">
           <FooterBase
             columns={[
-              {
-                title: "Explore",
-                items: [
-                  { label: "About", href: "about" },
-                  { label: "Menu", href: "menu" },
-                ],
-              },
-              {
-                title: "Resources",
-                items: [
-                  { label: "Blog", href: "blog" },
-                  { label: "Privacy Policy", href: "privacy" },
-                ],
-              },
+              { title: "Explore", items: [{ label: "About", href: "about" }, { label: "Menu", href: "menu" }] },
+              { title: "Resources", items: [{ label: "Blog", href: "blog" }, { label: "Privacy Policy", href: "privacy" }] }
             ]}
             copyrightText="© 2023 Coffee Bliss"
           />

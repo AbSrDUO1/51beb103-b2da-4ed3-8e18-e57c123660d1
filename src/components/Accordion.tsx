@@ -58,7 +58,7 @@ const Accordion = ({
     <div className="flex flex-row items-center justify-between w-full">
       <h2
         className={cls(
-          "text-base lg:text-xl font-medium text-foreground",
+          "text-base md:text-xl font-medium text-foreground",
           animationType === "instant" && "text-left",
           titleClassName
         )}

@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, Fragment } from "react";
+import { memo } from "react";
 import Image from "next/image";
 import CardStackTextBox from "@/components/cardStack/CardStackTextBox";
 import { cls } from "@/lib/utils";
@@ -9,13 +9,12 @@ import type { ButtonConfig } from "@/components/cardStack/types";
 
 interface SocialProofTwoProps {
     logos: string[];
-    title?: string;
-    description?: string;
+    title: string;
+    description: string;
     tag?: string;
     tagIcon?: LucideIcon;
     buttons?: ButtonConfig[];
     layout?: "default" | "split";
-    showCard?: boolean;
     ariaLabel?: string;
     className?: string;
     containerClassName?: string;
@@ -31,7 +30,6 @@ interface SocialProofTwoProps {
     logoItemClassName?: string;
     logoCardClassName?: string;
     logoImageClassName?: string;
-    separatorClassName?: string;
 }
 
 const SocialProofTwo = ({
@@ -42,7 +40,6 @@ const SocialProofTwo = ({
     tagIcon,
     buttons,
     layout = "default",
-    showCard = false,
     ariaLabel = "Social proof section",
     className = "",
     containerClassName = "",
@@ -58,17 +55,15 @@ const SocialProofTwo = ({
     logoItemClassName = "",
     logoCardClassName = "",
     logoImageClassName = "",
-    separatorClassName = "",
 }: SocialProofTwoProps) => {
-    // Calculate flex basis based on number of logos (for card version)
+    // Calculate flex basis based on number of logos
     const getFlexBasis = () => {
-        if (!showCard) return "";
         const count = logos.length;
-        if (count === 2) return "lg:basis-1/2";
-        if (count === 3) return "lg:basis-1/3";
-        if (count === 4) return "lg:basis-1/4";
-        if (count === 5) return "lg:basis-1/5";
-        return "lg:flex-1";
+        if (count === 2) return "md:basis-1/2";
+        if (count === 3) return "md:basis-1/3";
+        if (count === 4) return "md:basis-1/4";
+        if (count === 5) return "md:basis-1/5";
+        return "md:flex-1";
     };
     return (
         <section aria-label={ariaLabel} className={cls("w-full py-30", className)}>
@@ -92,36 +87,27 @@ const SocialProofTwo = ({
                 )}
 
                 <div className={cls("", contentClassName)}>
-                    <div className={cls("flex flex-col lg:flex-row items-center", showCard ? "gap-4" : "", logoRowClassName)}>
+                    <div className={cls("flex flex-col md:flex-row items-stretch gap-4", logoRowClassName)}>
                         {logos.map((src, i) => (
-                            <Fragment key={i}>
-                                <div className={cls(
+                            <div
+                                key={i}
+                                className={cls(
                                     "flex items-center justify-center w-full",
-                                    showCard ? getFlexBasis() : "lg:flex-1",
+                                    getFlexBasis(),
                                     logoItemClassName
-                                )}>
-                                    <div className={cls(showCard ? "card p-6 rounded-theme w-full h-full flex items-center justify-center" : "", logoCardClassName)}>
-                                        <Image
-                                            width={500}
-                                            height={500}
-                                            src={src}
-                                            alt={`Partner ${i + 1}`}
-                                            className={cls(
-                                                "w-1/2 h-auto 2xl:h-10",
-                                                showCard ? "lg:w-auto lg:h-8" : "lg:h-8 lg:w-auto lg:max-w-full",
-                                                logoImageClassName
-                                            )}
-                                            unoptimized={src.startsWith('http') || src.startsWith('//')}
-                                        />
-                                    </div>
-                                </div>
-                                {!showCard && i < logos.length - 1 && (
-                                    <div className={cls(
-                                        "w-full h-px lg:w-px lg:h-20 bg-foreground/20",
-                                        separatorClassName
-                                    )} />
                                 )}
-                            </Fragment>
+                            >
+                                <div className={cls("card p-6 rounded-theme w-full h-full flex items-center justify-center", logoCardClassName)}>
+                                    <Image
+                                        width={500}
+                                        height={500}
+                                        src={src}
+                                        alt={`Partner ${i + 1}`}
+                                        className={cls("w-1/2 md:w-auto md:h-8 2xl:h-10 h-auto object-contain", logoImageClassName)}
+                                        unoptimized={src.startsWith('http') || src.startsWith('//')}
+                                    />
+                                </div>
+                            </div>
                         ))}
                     </div>
                 </div>

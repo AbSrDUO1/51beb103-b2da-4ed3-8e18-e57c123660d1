@@ -59,14 +59,14 @@ const HeroBillboard = ({
       aria-label={ariaLabel}
       className={cls("w-full pt-35", className)}
     >
-      <div className={cls("w-content-width mx-auto flex flex-col gap-17 lg:gap-15", containerClassName)}>
+      <div className={cls("w-content-width mx-auto flex flex-col gap-17 md:gap-15", containerClassName)}>
         <TextBox
           title={title}
           description={description}
           tag={tag}
           tagIcon={tagIcon}
           buttons={buttons}
-          className={cls("flex flex-col gap-3 lg:gap-1", textBoxClassName)}
+          className={cls("flex flex-col gap-3 md:gap-1", textBoxClassName)}
           titleClassName={cls("text-6xl font-medium", titleClassName)}
           descriptionClassName={cls("text-lg leading-[1.2]", descriptionClassName)}
           tagClassName={cls("px-3 py-1 text-sm rounded-theme card text-foreground inline-flex items-center gap-2 mb-3", tagClassName)}

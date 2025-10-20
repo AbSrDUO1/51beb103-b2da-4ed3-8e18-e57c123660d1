@@ -126,11 +126,11 @@ const TextBox = ({
   // Split layout
   if (layout === "split") {
     return (
-      <div className={cls("flex flex-col lg:flex-row gap-3 lg:gap-15 lg:items-end", className)}>
-        <div className="w-full lg:w-6/10">
+      <div className={cls("flex flex-col md:flex-row gap-3 md:gap-15 md:items-end", className)}>
+        <div className="w-full md:w-6/10">
           {titleElement}
         </div>
-        <div className="w-full lg:w-4/10 flex flex-col gap-3 items-end">
+        <div className="w-full md:w-4/10 flex flex-col gap-3 items-end">
           {descriptionElement}
         </div>
       </div>

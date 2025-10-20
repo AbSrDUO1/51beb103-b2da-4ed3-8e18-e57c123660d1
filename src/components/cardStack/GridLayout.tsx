@@ -27,12 +27,12 @@ const GridLayout = ({
     ariaLabel,
 }: GridLayoutProps) => {
     const gridColsMap = {
-        1: "lg:grid-cols-1",
-        2: "lg:grid-cols-2",
-        3: "lg:grid-cols-3",
-        4: "lg:grid-cols-4",
+        1: "md:grid-cols-1",
+        2: "md:grid-cols-2",
+        3: "md:grid-cols-3",
+        4: "md:grid-cols-4",
     };
-    const gridCols = gridColsMap[itemCount as keyof typeof gridColsMap] || "lg:grid-cols-4";
+    const gridCols = gridColsMap[itemCount as keyof typeof gridColsMap] || "md:grid-cols-4";
 
     return (
         <section

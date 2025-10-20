@@ -23,8 +23,8 @@ type PricingPlan = {
 interface PricingCardThreeProps {
     plans: PricingPlan[];
     carouselMode?: "auto" | "buttons";
-    title?: string;
-    description?: string;
+    title: string;
+    description: string;
     tag?: string;
     tagIcon?: LucideIcon;
     buttons?: ButtonConfig[];
@@ -83,7 +83,7 @@ const PricingCardItem = memo(({
                 {plan.badgeIcon && <plan.badgeIcon className="inline h-[1em] w-auto" />}
                 {plan.badge || "placeholder"}
             </div>
-            <div className={cls("card text-foreground p-6 flex flex-col items-center gap-6 lg:gap-8", plan.badge ? "rounded-t-none rounded-b-theme-capped" : "rounded-theme-capped", cardClassName)}>
+            <div className={cls("card text-foreground p-6 flex flex-col items-center gap-6 md:gap-8", plan.badge ? "rounded-t-none rounded-b-theme-capped" : "rounded-theme-capped", cardClassName)}>
 
             <div className="flex flex-col gap-2 text-center">
                 <div className={cls("text-5xl font-medium", priceClassName)}>

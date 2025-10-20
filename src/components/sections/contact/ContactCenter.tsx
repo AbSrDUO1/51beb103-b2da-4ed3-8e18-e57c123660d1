@@ -55,8 +55,8 @@ const ContactCenter = ({
     return (
         <section aria-label={ariaLabel} className={cls("w-full py-30", className)}>
             <div className={cls("w-content-width mx-auto", containerClassName)}>
-                <div className={cls("w-full card p-6 lg:p-0 py-20 lg:py-30 rounded-theme-capped flex items-center justify-center", contentClassName)}>
-                    <div className="w-full lg:w-1/2">
+                <div className={cls("w-full card p-6 md:p-0 py-20 md:py-30 rounded-theme-capped flex items-center justify-center", contentClassName)}>
+                    <div className="w-full md:w-1/2">
                         <ContactForm
                             tag={tag}
                             tagIcon={tagIcon}
@@ -70,7 +70,7 @@ const ContactCenter = ({
                             tagClassName={tagClassName}
                             titleClassName={titleClassName}
                             descriptionClassName={descriptionClassName}
-                            formWrapperClassName={cls("lg:w-8/10 2xl:w-6/10", formWrapperClassName)}
+                            formWrapperClassName={cls("md:w-8/10 2xl:w-6/10", formWrapperClassName)}
                             formClassName={formClassName}
                             inputClassName={inputClassName}
                             buttonClassName={buttonClassName}

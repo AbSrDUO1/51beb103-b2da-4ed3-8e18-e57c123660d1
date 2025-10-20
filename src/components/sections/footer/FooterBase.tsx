@@ -62,7 +62,7 @@ const FooterBase = memo<FooterBaseProps>(function FooterBase({
       <div
         className={cls("relative w-content-width mx-auto z-10", containerClassName)}
       >
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-0 justify-between items-start mb-10">
+        <div className="flex flex-col md:flex-row gap-10 md:gap-0 justify-between items-start mb-10">
           {logoSrc && (
             <div className="flex-shrink-0">
               <Image
@@ -78,7 +78,7 @@ const FooterBase = memo<FooterBaseProps>(function FooterBase({
           )}
 
           <div
-            className={cls("w-full lg:w-fit flex gap-[var(--width-10)] lg:gap-[calc(var(--width-10)/2)]", columnsClassName)}
+            className={cls("w-full md:w-fit flex gap-[var(--width-10)] md:gap-[calc(var(--width-10)/2)]", columnsClassName)}
           >
             {columns.map((column) => (
               <div

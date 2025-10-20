@@ -25,7 +25,7 @@ const MobileMenu = ({
     return (
         <div
             id="mobile-menu"
-            className="lg:hidden z-10 fixed top-3 left-1/2 -translate-x-1/2 h-fit rounded-theme-capped card p-6 flex flex-col gap-6 select-none opacity-0"
+            className="md:hidden z-10 fixed top-3 left-1/2 -translate-x-1/2 h-fit rounded-theme-capped card p-6 flex flex-col gap-6 select-none opacity-0"
             style={{ width: 'calc(100vw - var(--vw-0_75) * 2)' }}
             ref={menuRef}
             role="navigation"

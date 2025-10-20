@@ -30,8 +30,8 @@ type ProductCard = {
 interface ProductCardThreeProps {
     products: ProductCard[];
     carouselMode?: "auto" | "buttons";
-    title?: string;
-    description?: string;
+    title: string;
+    description: string;
     tag?: string;
     tagIcon?: LucideIcon;
     buttons?: ButtonConfig[];

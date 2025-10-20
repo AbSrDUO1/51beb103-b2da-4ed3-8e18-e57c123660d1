@@ -1,5 +1,16 @@
 import type { Metadata } from "next";
-import { Inter_Tight, Playfair_Display, Roboto, Open_Sans, Lato, Montserrat, Poppins, Raleway, Ubuntu, Nunito } from "next/font/google";
+import {
+  Inter_Tight,
+  Playfair_Display,
+  Roboto,
+  Open_Sans,
+  Lato,
+  Montserrat,
+  Poppins,
+  Raleway,
+  Ubuntu,
+  Nunito
+} from "next/font/google";
 import "./globals.css";
 import {PostHogWrapper} from "@/components/PostHogWrapper";
 import AuroraBackground from "@/components/background/AuroraBackground";
@@ -70,18 +81,17 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Coffee Bliss",
     description: "Discover the finest coffee experience in town.",
-    url: "",
-    siteName: "Coffee Bliss",
+    siteName: "Coffee Bliss"
   },
   twitter: {
     card: "summary_large_image",
     title: "Coffee Bliss",
-    description: "Discover the finest coffee experience in town.",
+    description: "Discover the finest coffee experience in town."
   },
   robots: {
     index: true,
-    follow: true,
-  },
+    follow: true
+  }
 };
 
 export default function RootLayout({
@@ -91,25 +101,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <PostHogWrapper>
-        <body className={`${interTight.variable} ${playfairDisplay.variable} ${roboto.variable} ${openSans.variable} ${lato.variable} ${montserrat.variable} ${poppins.variable} ${raleway.variable} ${ubuntu.variable} ${nunito.variable} antialiased`}>
-          <AuroraBackground />
-          {children}
-        
+    <PostHogWrapper>
+      <body
+          className={`${interTight.variable} ${playfairDisplay.variable} ${roboto.variable} ${openSans.variable} ${lato.variable} ${montserrat.variable} ${poppins.variable} ${raleway.variable} ${ubuntu.variable} ${nunito.variable} antialiased"}
+      >
+      <AuroraBackground />
+      {children}
+      
         <script
           dangerouslySetInnerHTML={{
             __html: `
 (function() {
-  // Only run in iframe, not in parent window
   if (window.self === window.top) return;
 
-  // Only initialize once
   if (window.__webildEditorInitialized) return;
   window.__webildEditorInitialized = true;
 
   console.log('[Webild Visual Editor] Initializing...');
 
-  // State variables
   let isActive = false;
   let hoveredElement = null;
   let selectedElement = null;
@@ -121,14 +130,12 @@ export default function RootLayout({
   let scrollTimeout = null;
   let isScrolling = false;
 
-  // Constants - Enhanced element detection
   const textElements = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span', 'a', 'li', 'label', 'div'];
   const buttonElements = ['button', 'a', 'div', 'span'];
   const invalidElements = ['html', 'body', 'script', 'style', 'meta', 'link', 'head', 'noscript', 'title'];
   const hoverClass = 'webild-hover';
   const selectedClass = 'webild-selected';
 
-  // Styles - Updated to blue colors
   const style = document.createElement('style');
   style.id = 'webild-inspector-styles';
   style.textContent = \`
@@ -192,15 +199,12 @@ export default function RootLayout({
   \`;
   document.head.appendChild(style);
   
-  // Get unique CSS selector for an element with robust fallback
   const getUniqueSelector = (element) => {
-    // Always use data attribute approach for reliability
     const uniqueId = 'webild-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
     element.setAttribute('data-webild-id', uniqueId);
     return \`[data-webild-id="\${uniqueId}"]\`;
   };
   
-  // Get section ID from data-section attribute
   const getSectionId = (element) => {
     let current = element;
     while (current && current !== document.body) {
@@ -213,21 +217,17 @@ export default function RootLayout({
     return 'hero';
   };
   
-  // Enhanced element type detection with precise targeting
   const getElementType = (element) => {
     const tagName = element.tagName.toLowerCase();
     const computedStyle = window.getComputedStyle(element);
 
-    // Check for section first (highest priority)
     const sectionId = element.getAttribute('data-section');
     if (sectionId) {
       return sectionId.charAt(0).toUpperCase() + sectionId.slice(1);
     }
 
-    // Image elements
     if (tagName === 'img') return 'Image';
 
-    // Check for background images
     const backgroundImage = computedStyle.backgroundImage;
     if (backgroundImage && backgroundImage !== 'none') {
       const urlMatch = backgroundImage.match(/url\(['"]?([^'")]+)['"]?\)/);
@@ -236,22 +236,18 @@ export default function RootLayout({
       }
     }
 
-    // Precise Button detection - only actual buttons and links
     if (tagName === 'button') {
       return 'Button';
     }
 
-    // Links with href are buttons
     if (tagName === 'a' && element.getAttribute('href')) {
       return 'Button';
     }
 
-    // Elements with explicit button role
     if (element.getAttribute('role') === 'button') {
       return 'Button';
     }
 
-    // Elements with specific button classes (be very selective)
     const buttonClasses = ['btn', 'button', 'cta', 'action-button'];
     const hasButtonClass = buttonClasses.some(cls =>
       element.classList.contains(cls) || element.classList.contains(\`btn-\${cls}\`)
@@ -261,27 +257,22 @@ export default function RootLayout({
       return 'Button';
     }
 
-    // Text elements - be very specific
     const textTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span', 'label', 'li'];
     if (textTags.includes(tagName)) {
       return 'Text';
     }
 
-    // Div elements with only text content (no child elements)
     if (tagName === 'div' && element.children.length === 0 && element.textContent && element.textContent.trim()) {
       return 'Text';
     }
 
-    // Links without href are just text
     if (tagName === 'a' && !element.getAttribute('href')) {
       return 'Text';
     }
 
-    // Default to Section for container elements
     return 'Section';
   };
   
-  // Get element info
   const getElementInfo = (element) => {
     const rect = element.getBoundingClientRect();
     const tagName = element.tagName.toLowerCase();
@@ -314,7 +305,6 @@ export default function RootLayout({
       }
     };
     
-    // Check for images
     if (tagName === 'img') {
       info.imageData = {
         src: element.src,
@@ -325,7 +315,6 @@ export default function RootLayout({
       };
     }
     
-    // Check for background images
     const computedStyle = window.getComputedStyle(element);
     const backgroundImage = computedStyle.backgroundImage;
     if (backgroundImage && backgroundImage !== 'none') {
@@ -343,11 +332,9 @@ export default function RootLayout({
       }
     }
     
-    // Set element type
     const elementType = getElementType(element);
     info.elementType = elementType;
     
-    // Add button-specific data with enhanced extraction
     if (elementType === 'Button') {
       const buttonText = element.textContent?.trim() || element.value || element.getAttribute('aria-label') || '';
       const buttonHref = element.getAttribute('href') ||
@@ -362,7 +349,6 @@ export default function RootLayout({
       };
     }
 
-    // Add text content for Text elements
     if (elementType === 'Text') {
       info.textContent = element.textContent || '';
     }
@@ -370,19 +356,15 @@ export default function RootLayout({
     return info;
   };
   
-  // Check if element is valid for editing
   const isValidElement = (element) => {
     if (!isActive) return false;
     const tagName = element.tagName?.toLowerCase();
     return !invalidElements.includes(tagName);
   };
 
-  // Get the most specific/deepest element at a point (like browser dev tools)
   const getMostSpecificElement = (x, y) => {
-    // Get all elements at this point
     const elements = document.elementsFromPoint(x, y);
 
-    // Filter out invalid elements and webild overlays
     const validElements = elements.filter(el =>
       isValidElement(el) &&
       !el.classList.contains('webild-hover-overlay') &&
@@ -392,35 +374,29 @@ export default function RootLayout({
 
     if (validElements.length === 0) return null;
 
-    // Prioritize elements with content over empty containers
     for (const element of validElements) {
       const hasDirectContent = element.textContent && element.textContent.trim();
       const hasImages = element.tagName === 'IMG' || element.querySelector('img');
       const isInteractive = ['BUTTON', 'A', 'INPUT', 'SELECT', 'TEXTAREA'].includes(element.tagName);
 
-      // Prioritize interactive elements, images, or elements with direct text content
       if (isInteractive || hasImages || (hasDirectContent && element.children.length <= 2)) {
         return element;
       }
     }
 
-    // If no priority elements found, return the first valid element (deepest)
     return validElements[0];
   };
 
-  // Check if element is text editable
   const isTextElement = (element) => {
     const elementType = getElementType(element);
     return elementType === 'Text';
   };
 
-  // Check if element is a button
   const isButtonElement = (element) => {
     const elementType = getElementType(element);
     return elementType === 'Button';
   };
   
-  // Make element editable
   const makeEditable = (element, clickEvent) => {
     if (!isTextElement(element)) return;
     
@@ -459,7 +435,6 @@ export default function RootLayout({
     }
   };
   
-  // Make element uneditable
   const makeUneditable = (element, save = false) => {
     if (!element || element.contentEditable !== 'true') return;
     
@@ -488,10 +463,8 @@ export default function RootLayout({
         timestamp: Date.now()
       };
 
-      // Save to localStorage for instant tracking
       saveChangeToStorage(change);
 
-      // Also send to parent for immediate UI updates
       window.parent.postMessage({
         type: 'webild-element-changed',
         data: change
@@ -503,7 +476,6 @@ export default function RootLayout({
     originalContent = null;
   };
   
-  // Create hover overlay
   const createHoverOverlay = (element) => {
     const rect = element.getBoundingClientRect();
     const overlay = document.createElement('div');
@@ -524,7 +496,6 @@ export default function RootLayout({
     return overlay;
   };
   
-  // Remove hover overlay
   const removeHoverOverlay = () => {
     if (hoverOverlay) {
       hoverOverlay.remove();
@@ -532,7 +503,6 @@ export default function RootLayout({
     }
   };
   
-  // Show element type label
   const showElementTypeLabel = (element, elementType) => {
     if (!elementType) return;
     
@@ -547,7 +517,6 @@ export default function RootLayout({
       top: \${rect.top - 32}px;
     \`;
     
-    // Adjust if off-screen
     if (rect.top < 40) {
       elementTypeLabel.style.top = \`\${rect.bottom + 4}px\`;
     }
@@ -555,7 +524,6 @@ export default function RootLayout({
     document.body.appendChild(elementTypeLabel);
   };
   
-  // Remove element type label
   const removeElementTypeLabel = () => {
     if (elementTypeLabel) {
       elementTypeLabel.remove();
@@ -563,7 +531,6 @@ export default function RootLayout({
     }
   };
   
-  // Show selected category label
   const showSelectedCategoryLabel = (elementType) => {
     removeSelectedCategoryLabel();
     if (!elementType) return;
@@ -574,7 +541,6 @@ export default function RootLayout({
     document.body.appendChild(selectedCategoryLabel);
   };
   
-  // Remove selected category label
   const removeSelectedCategoryLabel = () => {
     if (selectedCategoryLabel) {
       selectedCategoryLabel.remove();
@@ -582,11 +548,9 @@ export default function RootLayout({
     }
   };
   
-  // Mouse over handler
   const handleMouseOver = (e) => {
     if (!isActive) return;
 
-    // Get the most specific element at this point (like browser dev tools)
     const target = getMostSpecificElement(e.clientX, e.clientY) || e.target;
 
     if (!isValidElement(target) || target === hoveredElement || target === selectedElement) {
@@ -628,7 +592,6 @@ export default function RootLayout({
     }, '*');
   };
   
-  // Mouse out handler
   const handleMouseOut = (e) => {
     if (!isActive) return;
     
@@ -652,7 +615,6 @@ export default function RootLayout({
     }
   };
   
-  // Click handler
   const handleClick = (e) => {
     if (!isActive) return;
 
@@ -664,7 +626,6 @@ export default function RootLayout({
     e.preventDefault();
     e.stopPropagation();
 
-    // Get the most specific element at this point (like browser dev tools)
     const target = getMostSpecificElement(e.clientX, e.clientY) || e.target;
     if (!isValidElement(target)) return;
     
@@ -723,7 +684,6 @@ export default function RootLayout({
     }
   };
   
-  // Key down handler
   const handleKeyDown = (e) => {
     if (!isActive) return;
     if (!isEditing || !selectedElement) return;
@@ -737,7 +697,6 @@ export default function RootLayout({
     }
   };
   
-  // Blur handler
   const handleBlur = (e) => {
     if (!isActive) return;
     if (isEditing && selectedElement && e.target === selectedElement) {
@@ -745,7 +704,6 @@ export default function RootLayout({
     }
   };
   
-  // Scroll handler
   const handleScroll = () => {
     if (!isActive) return;
     
@@ -768,7 +726,6 @@ export default function RootLayout({
     }, '*');
   };
   
-  // localStorage utilities for instant change tracking
   const getStorageKey = () => {
     const url = new URL(window.location.href);
     const pathParts = url.pathname.split('/').filter(Boolean);
@@ -780,13 +737,11 @@ export default function RootLayout({
       const storageKey = getStorageKey();
       const existingChanges = JSON.parse(localStorage.getItem(storageKey) || '[]');
 
-      // Remove any existing change for the same selector
       const filteredChanges = existingChanges.filter(c => c.selector !== change.selector);
       filteredChanges.push(change);
 
       localStorage.setItem(storageKey, JSON.stringify(filteredChanges));
 
-      // Notify parent about the change
       window.parent.postMessage({
         type: 'webild-change-saved-locally',
         data: { change, allChanges: filteredChanges }
@@ -809,7 +764,6 @@ export default function RootLayout({
     }
   };
 
-  // Message handler
   const handleMessage = (e) => {
     if (!e.data || !e.data.type) return;
 
@@ -823,13 +777,11 @@ export default function RootLayout({
     }
 
     if (e.data.type === 'webild-deactivate-editor') {
-      // Add debugging to understand why deactivation is happening
       console.log('[Webild Visual Editor] Deactivation requested from:', e.origin, 'Data:', e.data);
 
       if (isActive) {
         isActive = false;
 
-        // Clean up
         if (selectedElement) {
           makeUneditable(selectedElement, false);
           selectedElement.classList.remove(selectedClass);
@@ -863,7 +815,6 @@ export default function RootLayout({
         const element = document.querySelector(selector);
         if (element && isTextElement(element)) {
           element.textContent = newValue;
-          // Don't save to localStorage here as this is a real-time update
         }
       } catch (error) {
         console.error('[Webild] Invalid selector for text update:', selector, error);
@@ -886,7 +837,6 @@ export default function RootLayout({
               element.setAttribute('data-href', href);
             }
           }
-          // Don't save to localStorage here as this is a real-time update
         }
       } catch (error) {
         console.error('[Webild] Invalid selector for button update:', selector, error);
@@ -941,10 +891,9 @@ export default function RootLayout({
         if (replaced) {
           const elementInfo = getElementInfo(element);
 
-          // Extract just the URL from the oldValue if it's a CSS url() format
           let cleanOldValue = oldValue;
           if (oldValue.includes('url(')) {
-            const urlMatch = oldValue.match(/url(['"]?([^'")]+)['"]?)/);
+            const urlMatch = oldValue.match(/url\(['"]?([^'")]+)['"]?\)/);
             if (urlMatch) {
               cleanOldValue = urlMatch[1];
             }
@@ -964,7 +913,6 @@ export default function RootLayout({
             timestamp: Date.now()
           };
 
-          // Save to localStorage for instant tracking
           saveChangeToStorage(change);
 
           window.parent.postMessage({
@@ -991,7 +939,6 @@ export default function RootLayout({
     }
   };
   
-  // Attach event listeners
   document.addEventListener('mouseover', handleMouseOver, true);
   document.addEventListener('mouseout', handleMouseOut, true);
   document.addEventListener('click', handleClick, true);
@@ -1000,7 +947,6 @@ export default function RootLayout({
   window.addEventListener('scroll', handleScroll, true);
   window.addEventListener('message', handleMessage, true);
   
-  // Cleanup function
   window.webildCleanup = () => {
     isActive = false;
     
@@ -1034,7 +980,6 @@ export default function RootLayout({
     selectedElement = null;
   };
   
-  // Send ready signal
   window.parent.postMessage({ type: 'webild-editor-ready' }, '*');
   console.log('[Webild Visual Editor] Ready and waiting for activation');
 })();
@@ -1042,7 +987,7 @@ export default function RootLayout({
           }}
         />
       </body>
-      </PostHogWrapper>
+    </PostHogWrapper>
     </html>
   );
 }

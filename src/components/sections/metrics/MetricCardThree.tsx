@@ -16,8 +16,8 @@ type Metric = {
 interface MetricCardThreeProps {
     metrics: Metric[];
     carouselMode?: "auto" | "buttons";
-    title?: string;
-    description?: string;
+    title: string;
+    description: string;
     tag?: string;
     tagIcon?: LucideIcon;
     buttons?: ButtonConfig[];

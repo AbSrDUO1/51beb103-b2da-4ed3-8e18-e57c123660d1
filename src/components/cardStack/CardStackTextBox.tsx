@@ -24,11 +24,11 @@ const CardStackTextBox = ({
     const styles = useMemo(() => {
         if (layout === "default") {
             return {
-                className: cls("flex flex-col gap-3 lg:gap-1", textBoxClassName),
+                className: cls("flex flex-col gap-3 md:gap-1", textBoxClassName),
                 titleClassName: cls("text-5xl font-medium text-center", titleClassName),
-                descriptionClassName: cls("text-lg leading-[1.2] text-center lg:max-w-6/10", descriptionClassName),
-                tagClassName: cls("w-fit px-3 py-1 text-sm rounded-theme card text-foreground inline-flex items-center gap-2 mb-1 lg:mb-3 mx-auto", tagClassName),
-                buttonContainerClassName: cls("flex gap-4 mt-1 lg:mt-3 justify-center", buttonContainerClassName),
+                descriptionClassName: cls("text-lg leading-[1.2] text-center md:max-w-6/10", descriptionClassName),
+                tagClassName: cls("w-fit px-3 py-1 text-sm rounded-theme card text-foreground inline-flex items-center gap-2 mb-1 md:mb-3 mx-auto", tagClassName),
+                buttonContainerClassName: cls("flex gap-4 mt-1 md:mt-3 justify-center", buttonContainerClassName),
                 center: true,
             };
         }

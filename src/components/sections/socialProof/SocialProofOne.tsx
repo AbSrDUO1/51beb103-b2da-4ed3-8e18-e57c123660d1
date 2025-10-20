@@ -10,8 +10,8 @@ import type { ButtonConfig } from "@/components/cardStack/types";
 
 interface SocialProofOneProps {
     logos: string[];
-    title?: string;
-    description?: string;
+    title: string;
+    description: string;
     tag?: string;
     tagIcon?: LucideIcon;
     buttons?: ButtonConfig[];

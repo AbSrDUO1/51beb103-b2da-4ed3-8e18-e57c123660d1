@@ -58,7 +58,7 @@ const NavbarLayoutFloatingOverlay = memo<NavbarLayoutFloatingOverlayProps>(
             "w-content-width mx-auto",
             "flex items-center justify-between",
             "card rounded-theme",
-            "px-6 lg:pr-3"
+            "px-6 md:pr-3"
           )}
           style={{
             height: "calc(var(--vw-0_75) + var(--vw-0_75) + var(--height-9))",
@@ -70,7 +70,7 @@ const NavbarLayoutFloatingOverlay = memo<NavbarLayoutFloatingOverlayProps>(
             style={{ paddingRight: "calc(var(--height-9) + var(--vw-0_75))" }}
           >
             {!isMobile && (
-              <div className="hidden lg:flex">
+              <div className="hidden md:flex">
                 <Button
                   {...getButtonProps(
                     { text: buttonText, onClick: onButtonClick },

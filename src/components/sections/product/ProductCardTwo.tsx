@@ -25,8 +25,8 @@ type ProductCard = {
 interface ProductCardTwoProps {
     products: ProductCard[];
     carouselMode?: "auto" | "buttons";
-    title?: string;
-    description?: string;
+    title: string;
+    description: string;
     tag?: string;
     tagIcon?: LucideIcon;
     buttons?: ButtonConfig[];
@@ -102,8 +102,8 @@ const ProductCardItem = memo(({
                                     className={cls(
                                         "h-4 w-auto",
                                         i < Math.floor(product.rating)
-                                            ? "text-foreground fill-foreground"
-                                            : "text-foreground opacity-20"
+                                            ? "text-accent fill-accent"
+                                            : "text-accent opacity-20"
                                     )}
                                     strokeWidth={1.5}
                                 />

@@ -10,13 +10,13 @@
         "constraints": {
           "textRules": {
             "title": {
-              "required": false,
+              "required": true,
               "example": "Features",
               "minChars": 2,
               "maxChars": 50
             },
             "description": {
-              "required": false,
+              "required": true,
               "example": "Discover our products",
               "minChars": 5,
               "maxChars": 300
@@ -550,7 +550,7 @@
           }
         },
         "propsSchema": {
-          "navItems": "NavItem[]",
+          "navItems": "Array<{name: string, id: string}>",
           "logoSrc?": "string",
           "logoAlt?": "string (default: '')",
           "brandName?": "string (default: 'Webild')"
@@ -592,7 +592,7 @@
           }
         },
         "propsSchema": {
-          "navItems": "NavItem[]",
+          "navItems": "Array<{name: string, id: string}>",
           "logoSrc?": "string",
           "logoAlt?": "string (default: '')",
           "brandName?": "string (default: 'Webild')",
@@ -641,7 +641,7 @@
           }
         },
         "propsSchema": {
-          "navItems": "NavItem[]",
+          "navItems": "Array<{name: string, id: string}>",
           "logoSrc?": "string",
           "logoAlt?": "string (default: '')",
           "brandName?": "string (default: 'Webild')",
@@ -876,6 +876,36 @@
         "description": "Split-layout about section with bullet points on one side and image/video on the other.",
         "details": "Use for about sections showcasing features or benefits with visual support. Features responsive split layout with configurable image position (left/right), bullet points with optional icons, title, and description. Image side takes 60% width on desktop (70% on 2xl), text takes 40% (30% on 2xl). Both sides have card styling with theme border radius.",
         "constraints": {
+          "textRules": {
+            "title": {
+              "required": true,
+              "example": "About Us",
+              "minChars": 2,
+              "maxChars": 50
+            },
+            "description": {
+              "required": true,
+              "example": "Learn more about our mission, values, and what drives us forward",
+              "minChars": 5,
+              "maxChars": 300
+            },
+            "tag": {
+              "required": false,
+              "example": "Our Story",
+              "minChars": 2,
+              "maxChars": 30
+            }
+          },
+          "buttonRules": {
+            "maxButtons": 2,
+            "structure": {
+              "text": "string - Button label (required)",
+              "href": "string - Link destination (optional)",
+              "onClick": "() => void - Click handler (optional)",
+              "props": "Partial<ButtonPropsForVariant> - Additional button props (optional)"
+            },
+            "note": "Button variant controlled by ThemeProvider's defaultButtonVariant. All sections should be wrapped in a single ThemeProvider at the app/page level."
+          },
           "bulletPointRules": {
             "structure": {
               "title": "string - Bullet point heading (required)",
@@ -903,6 +933,11 @@
           }
         },
         "propsSchema": {
+          "title": "string",
+          "description": "string",
+          "tag?": "string",
+          "tagIcon?": "LucideIcon",
+          "buttons?": "ButtonConfig[]",
           "bulletPoints": "Array<{ title: string, description: string, icon?: LucideIcon }>",
           "imageSrc?": "string",
           "videoSrc?": "string",
@@ -912,6 +947,13 @@
           "imagePosition?": "'left' | 'right' (default: 'right')",
           "className?": "string",
           "containerClassName?": "string",
+          "textBoxClassName?": "string",
+          "titleClassName?": "string",
+          "descriptionClassName?": "string",
+          "tagClassName?": "string",
+          "buttonContainerClassName?": "string",
+          "buttonClassName?": "string",
+          "buttonTextClassName?": "string",
           "contentClassName?": "string",
           "bulletPointClassName?": "string",
           "bulletTitleClassName?": "string",
@@ -919,7 +961,7 @@
           "mediaWrapperClassName?": "string",
           "imageClassName?": "string"
         },
-        "usage": "// Wrap in ThemeProvider\n<ThemeProvider defaultButtonVariant=\"text-stagger\" defaultTextAnimation=\"entrance-slide\" borderRadius=\"rounded\">\n  <SplitAbout bulletPoints={[{ title: 'Innovation', description: 'We push boundaries', icon: Lightbulb }, { title: 'Quality', description: 'Excellence in every detail' }]} imageSrc=\"/about.jpg\" />\n</ThemeProvider>"
+        "usage": "// Wrap in ThemeProvider\n<ThemeProvider defaultButtonVariant=\"text-stagger\" defaultTextAnimation=\"entrance-slide\" borderRadius=\"rounded\">\n  <SplitAbout title=\"About Us\" description=\"Learn more about our mission, values, and what drives us forward\" bulletPoints={[{ title: 'Innovation', description: 'We push boundaries', icon: Lightbulb }, { title: 'Quality', description: 'Excellence in every detail' }]} imageSrc=\"/about.jpg\" />\n</ThemeProvider>"
       },
       {
         "import": "import TextSplitAbout from '@/components/sections/about/TextSplitAbout';",
@@ -1021,13 +1063,13 @@
         "constraints": {
           "textRules": {
             "title": {
-              "required": false,
+              "required": true,
               "example": "Our Features",
               "minChars": 2,
               "maxChars": 35
             },
             "description": {
-              "required": false,
+              "required": true,
               "example": "Discover the tools and capabilities that make our platform powerful",
               "minChars": 5,
               "maxChars": 250
@@ -1057,8 +1099,8 @@
         "propsSchema": {
           "features": "Array<{ title: string, description: string, button?: ButtonConfig } & ({ imageSrc: string, imageAlt?: string } | { videoSrc: string, videoAriaLabel?: string })>",
           "carouselMode?": "'auto' | 'buttons' (default: 'buttons')",
-          "title?": "string",
-          "description?": "string",
+          "title": "string",
+          "description": "string",
           "tag?": "string",
           "tagIcon?": "LucideIcon",
           "buttons?": "ButtonConfig[]",
@@ -1084,7 +1126,7 @@
           "textBoxButtonClassName?": "string",
           "textBoxButtonTextClassName?": "string"
         },
-        "usage": "<FeatureCardOne features={[{ title: 'Analytics', description: 'Get insights', imageSrc: '/feature.jpg', button: { text: 'Learn More', href: '#' } }]} title=\"Features\" />"
+        "usage": "<FeatureCardOne features={[{ title: 'Analytics', description: 'Get insights', imageSrc: '/feature.jpg', button: { text: 'Learn More', href: '#' } }]} title=\"Our Features\" description=\"Discover what makes us different\" />"
       },
       {
         "import": "import FeatureCardTwo from '@/components/sections/feature/FeatureCardTwo';",
@@ -1095,13 +1137,13 @@
         "constraints": {
           "textRules": {
             "title": {
-              "required": false,
+              "required": true,
               "example": "Our Features",
               "minChars": 2,
               "maxChars": 35
             },
             "description": {
-              "required": false,
+              "required": true,
               "example": "Discover what makes us different",
               "minChars": 5,
               "maxChars": 250
@@ -1131,8 +1173,8 @@
         "propsSchema": {
           "features": "Array<{ title: string, description: string, icon: LucideIcon, button?: ButtonConfig }>",
           "carouselMode?": "'auto' | 'buttons' (default: 'buttons')",
-          "title?": "string",
-          "description?": "string",
+          "title": "string",
+          "description": "string",
           "tag?": "string",
           "tagIcon?": "LucideIcon",
           "buttons?": "ButtonConfig[]",
@@ -1157,7 +1199,7 @@
           "textBoxButtonClassName?": "string",
           "textBoxButtonTextClassName?": "string"
         },
-        "usage": "<FeatureCardTwo features={[{ title: 'Analytics', description: 'Track performance', icon: Zap, button: { text: 'Learn More', href: '#' } }]} title=\"Features\" />"
+        "usage": "<FeatureCardTwo features={[{ title: 'Analytics', description: 'Track performance', icon: Zap, button: { text: 'Learn More', href: '#' } }]} title=\"Our Features\" description=\"Discover what makes us different\" />"
       },
       {
         "import": "import FeatureCardThree from '@/components/sections/feature/featureCardThree/FeatureCardThree';",
@@ -1168,13 +1210,13 @@
         "constraints": {
           "textRules": {
             "title": {
-              "required": false,
+              "required": true,
               "example": "Our Features",
               "minChars": 2,
               "maxChars": 35
             },
             "description": {
-              "required": false,
+              "required": true,
               "example": "Discover what makes us different",
               "minChars": 5,
               "maxChars": 250
@@ -1223,8 +1265,8 @@
         "propsSchema": {
           "features": "Array<{ id: string, title: string, description: string, imageSrc: string, imageAlt?: string }>",
           "carouselMode?": "'auto' | 'buttons' (default: 'buttons')",
-          "title?": "string",
-          "description?": "string",
+          "title": "string",
+          "description": "string",
           "tag?": "string",
           "tagIcon?": "LucideIcon",
           "buttons?": "ButtonConfig[]",
@@ -1247,7 +1289,7 @@
           "textBoxButtonTextClassName?": "string",
           "itemContentClassName?": "string"
         },
-        "usage": "<FeatureCardThree features={[{ id: '01', title: 'Analytics', description: 'Track performance with detailed insights', imageSrc: '/feature.jpg' }]} title=\"Features\" />"
+        "usage": "<FeatureCardThree features={[{ id: '01', title: 'Analytics', description: 'Track performance with detailed insights', imageSrc: '/feature.jpg' }]} title=\"Our Features\" description=\"Discover what makes us different\" />"
       }
     ],
     "product": [
@@ -1260,13 +1302,13 @@
         "constraints": {
           "textRules": {
             "title": {
-              "required": false,
+              "required": true,
               "example": "Featured Products",
               "minChars": 2,
               "maxChars": 35
             },
             "description": {
-              "required": false,
+              "required": true,
               "example": "Discover our latest collection of premium products",
               "minChars": 5,
               "maxChars": 250
@@ -1314,8 +1356,8 @@
         "propsSchema": {
           "products": "Array<{ id: string, name: string, price: string, imageSrc: string, imageAlt?: string, onFavorite?: () => void, onProductClick?: () => void, isFavorited?: boolean }>",
           "carouselMode?": "'auto' | 'buttons' (default: 'buttons')",
-          "title?": "string",
-          "description?": "string",
+          "title": "string",
+          "description": "string",
           "tag?": "string",
           "tagIcon?": "LucideIcon",
           "buttons?": "ButtonConfig[]",
@@ -1338,7 +1380,7 @@
           "textBoxButtonClassName?": "string",
           "textBoxButtonTextClassName?": "string"
         },
-        "usage": "<ProductCardOne products={[{ id: '1', name: 'Eclipse Motion Pro', price: '$150', imageSrc: '/product.jpg', onProductClick: () => window.open('https://example.com', '_blank') }]} title=\"Featured Products\" />"
+        "usage": "<ProductCardOne products={[{ id: '1', name: 'Eclipse Motion Pro', price: '$150', imageSrc: '/product.jpg', onProductClick: () => window.open('https://example.com', '_blank') }]} title=\"Featured Products\" description=\"Explore our curated collection\" />"
       },
       {
         "import": "import ProductCardTwo from '@/components/sections/product/ProductCardTwo';",
@@ -1349,13 +1391,13 @@
         "constraints": {
           "textRules": {
             "title": {
-              "required": false,
+              "required": true,
               "example": "Premium Collection",
               "minChars": 2,
               "maxChars": 35
             },
             "description": {
-              "required": false,
+              "required": true,
               "example": "Curated selection of top-rated products",
               "minChars": 5,
               "maxChars": 250
@@ -1420,8 +1462,8 @@
         "propsSchema": {
           "products": "Array<{ id: string, brand: string, name: string, price: string, rating: number, reviewCount: string, imageSrc: string, imageAlt?: string, onFavorite?: () => void, onProductClick?: () => void, isFavorited?: boolean }>",
           "carouselMode?": "'auto' | 'buttons' (default: 'buttons')",
-          "title?": "string",
-          "description?": "string",
+          "title": "string",
+          "description": "string",
           "tag?": "string",
           "tagIcon?": "LucideIcon",
           "buttons?": "ButtonConfig[]",
@@ -1446,7 +1488,7 @@
           "textBoxButtonClassName?": "string",
           "textBoxButtonTextClassName?": "string"
         },
-        "usage": "<ProductCardTwo products={[{ id: '1', brand: 'Wofurnitures', name: 'Single Accent Chair', price: '$650.00', rating: 4, reviewCount: '23.9k', imageSrc: '/product.jpg', onProductClick: () => window.open('https://example.com', '_blank') }]} title=\"Premium Collection\" />"
+        "usage": "<ProductCardTwo products={[{ id: '1', brand: 'Wofurnitures', name: 'Single Accent Chair', price: '$650.00', rating: 4, reviewCount: '23.9k', imageSrc: '/product.jpg', onProductClick: () => window.open('https://example.com', '_blank') }]} title=\"Premium Collection\" description=\"Explore our curated collection\" />"
       },
       {
         "import": "import ProductCardThree from '@/components/sections/product/ProductCardThree';",
@@ -1457,13 +1499,13 @@
         "constraints": {
           "textRules": {
             "title": {
-              "required": false,
+              "required": true,
               "example": "Shop Now",
               "minChars": 2,
               "maxChars": 35
             },
             "description": {
-              "required": false,
+              "required": true,
               "example": "Add your favorite items to cart",
               "minChars": 5,
               "maxChars": 250
@@ -1516,8 +1558,8 @@
         "propsSchema": {
           "products": "Array<{ id: string, name: string, price: string, imageSrc: string, imageAlt?: string, onFavorite?: () => void, onProductClick?: () => void, onQuantityChange?: (quantity: number) => void, isFavorited?: boolean, initialQuantity?: number, priceButtonProps?: Partial<ButtonPropsForVariant<CTAButtonVariant>> }>",
           "carouselMode?": "'auto' | 'buttons' (default: 'buttons')",
-          "title?": "string",
-          "description?": "string",
+          "title": "string",
+          "description": "string",
           "tag?": "string",
           "tagIcon?": "LucideIcon",
           "buttons?": "ButtonConfig[]",
@@ -1540,7 +1582,7 @@
           "textBoxButtonClassName?": "string",
           "textBoxButtonTextClassName?": "string"
         },
-        "usage": "<ProductCardThree products={[{ id: '1', name: 'TIMBUK2 Classic Messenger Bag', price: '$119.00', imageSrc: '/product.jpg', onProductClick: () => window.open('https://example.com', '_blank'), onQuantityChange: (qty) => console.log(qty) }]} title=\"Shop Now\" />"
+        "usage": "<ProductCardThree products={[{ id: '1', name: 'TIMBUK2 Classic Messenger Bag', price: '$119.00', imageSrc: '/product.jpg', onProductClick: () => window.open('https://example.com', '_blank'), onQuantityChange: (qty) => console.log(qty) }]} title=\"Shop Now\" description=\"Explore our curated collection\" />"
       }
     ],
     "pricing": [
@@ -1553,13 +1595,13 @@
         "constraints": {
           "textRules": {
             "title": {
-              "required": false,
+              "required": true,
               "example": "Choose Your Plan",
               "minChars": 2,
               "maxChars": 35
             },
             "description": {
-              "required": false,
+              "required": true,
               "example": "Select the perfect plan for your needs",
               "minChars": 5,
               "maxChars": 250
@@ -1613,8 +1655,8 @@
         "propsSchema": {
           "plans": "Array<{ id: string, badge: string, badgeIcon?: LucideIcon, price: string, subtitle: string, features: string[] }>",
           "carouselMode?": "'auto' | 'buttons' (default: 'buttons')",
-          "title?": "string",
-          "description?": "string",
+          "title": "string",
+          "description": "string",
           "tag?": "string",
           "tagIcon?": "LucideIcon",
           "buttons?": "ButtonConfig[]",
@@ -1639,7 +1681,7 @@
           "textBoxButtonClassName?": "string",
           "textBoxButtonTextClassName?": "string"
         },
-        "usage": "<PricingCardOne plans={[{ id: '1', badge: 'Most Popular', price: '$29/mo', subtitle: 'Perfect for small teams', features: ['Up to 10 team members', '100GB storage', 'Priority support'] }]} title=\"Choose Your Plan\" />"
+        "usage": "<PricingCardOne plans={[{ id: '1', badge: 'Most Popular', price: '$29/mo', subtitle: 'Perfect for small teams', features: ['Up to 10 team members', '100GB storage', 'Priority support'] }]} title=\"Choose Your Plan\" description=\"Find the perfect plan for your needs\" />"
       },
       {
         "import": "import PricingCardTwo from '@/components/sections/pricing/PricingCardTwo';",
@@ -1650,13 +1692,13 @@
         "constraints": {
           "textRules": {
             "title": {
-              "required": false,
+              "required": true,
               "example": "Choose Your Plan",
               "minChars": 2,
               "maxChars": 35
             },
             "description": {
-              "required": false,
+              "required": true,
               "example": "Select the perfect plan for your needs",
               "minChars": 5,
               "maxChars": 250
@@ -1721,8 +1763,8 @@
         "propsSchema": {
           "plans": "Array<{ id: string, badge: string, badgeIcon?: LucideIcon, price: string, subtitle: string, buttons: ButtonConfig[], features: string[] }>",
           "carouselMode?": "'auto' | 'buttons' (default: 'buttons')",
-          "title?": "string",
-          "description?": "string",
+          "title": "string",
+          "description": "string",
           "tag?": "string",
           "tagIcon?": "LucideIcon",
           "buttons?": "ButtonConfig[]",
@@ -1749,7 +1791,7 @@
           "textBoxButtonClassName?": "string",
           "textBoxButtonTextClassName?": "string"
         },
-        "usage": "<PricingCardTwo plans={[{ id: '1', badge: 'Business Plan', price: '$29/mo', subtitle: 'Perfect for small teams', buttons: [{ text: 'Get Started', onClick: () => console.log('clicked') }, { text: 'Chat to Sales', onClick: () => console.log('chat') }], features: ['Up to 10 team members', '100GB storage', 'Priority support'] }]} title=\"Choose Your Plan\" />"
+        "usage": "<PricingCardTwo plans={[{ id: '1', badge: 'Business Plan', price: '$29/mo', subtitle: 'Perfect for small teams', buttons: [{ text: 'Get Started', onClick: () => console.log('clicked') }, { text: 'Chat to Sales', onClick: () => console.log('chat') }], features: ['Up to 10 team members', '100GB storage', 'Priority support'] }]} title=\"Choose Your Plan\" description=\"Find the perfect plan for your needs\" />"
       },
       {
         "import": "import PricingCardThree from '@/components/sections/pricing/PricingCardThree';",
@@ -1760,13 +1802,13 @@
         "constraints": {
           "textRules": {
             "title": {
-              "required": false,
+              "required": true,
               "example": "Choose Your Plan",
               "minChars": 2,
               "maxChars": 35
             },
             "description": {
-              "required": false,
+              "required": true,
               "example": "Select the perfect plan for your needs",
               "minChars": 5,
               "maxChars": 250
@@ -1831,8 +1873,8 @@
         "propsSchema": {
           "plans": "Array<{ id: string, badge?: string, badgeIcon?: LucideIcon, price: string, name: string, buttons: ButtonConfig[], features: string[] }>",
           "carouselMode?": "'auto' | 'buttons' (default: 'buttons')",
-          "title?": "string",
-          "description?": "string",
+          "title": "string",
+          "description": "string",
           "tag?": "string",
           "tagIcon?": "LucideIcon",
           "buttons?": "ButtonConfig[]",
@@ -1859,7 +1901,7 @@
           "textBoxButtonClassName?": "string",
           "textBoxButtonTextClassName?": "string"
         },
-        "usage": "<PricingCardThree plans={[{ id: '1', price: '$10/mo', name: 'Basic plan', buttons: [{ text: 'Get started', onClick: () => console.log('clicked') }, { text: 'Chat to sales', onClick: () => console.log('chat') }], features: ['Up to 10 users', '20GB storage', 'Email support'] }, { id: '2', badge: 'Most popular plan', badgeIcon: Sparkles, price: '$20/mo', name: 'Business plan', buttons: [{ text: 'Get started', onClick: () => console.log('clicked') }, { text: 'Chat to sales', onClick: () => console.log('chat') }], features: ['Up to 20 users', '40GB storage', 'Priority support'] }]} title=\"Choose Your Plan\" />"
+        "usage": "<PricingCardThree plans={[{ id: '1', price: '$10/mo', name: 'Basic plan', buttons: [{ text: 'Get started', onClick: () => console.log('clicked') }, { text: 'Chat to sales', onClick: () => console.log('chat') }], features: ['Up to 10 users', '20GB storage', 'Email support'] }, { id: '2', badge: 'Most popular plan', badgeIcon: Sparkles, price: '$20/mo', name: 'Business plan', buttons: [{ text: 'Get started', onClick: () => console.log('clicked') }, { text: 'Chat to sales', onClick: () => console.log('chat') }], features: ['Up to 20 users', '40GB storage', 'Priority support'] }]} title=\"Choose Your Plan\" description=\"Find the perfect plan for your needs\" />"
       }
     ],
     "metric": [
@@ -1872,13 +1914,13 @@
         "constraints": {
           "textRules": {
             "title": {
-              "required": false,
+              "required": true,
               "example": "Our Impact",
               "minChars": 2,
               "maxChars": 35
             },
             "description": {
-              "required": false,
+              "required": true,
               "example": "Key metrics that showcase our growth and success",
               "minChars": 5,
               "maxChars": 250
@@ -1928,8 +1970,8 @@
         "propsSchema": {
           "metrics": "Array<{ id: string, value: string, title: string, description: string, icon: LucideIcon }>",
           "carouselMode?": "'auto' | 'buttons' (default: 'buttons')",
-          "title?": "string",
-          "description?": "string",
+          "title": "string",
+          "description": "string",
           "tag?": "string",
           "tagIcon?": "LucideIcon",
           "buttons?": "ButtonConfig[]",
@@ -1954,7 +1996,7 @@
           "textBoxButtonClassName?": "string",
           "textBoxButtonTextClassName?": "string"
         },
-        "usage": "<MetricCardOne metrics={[{ id: '1', value: '100', title: 'million', description: 'Active users worldwide', icon: TrendingUp }, { id: '2', value: '700', title: 'thousand', description: 'Projects completed successfully', icon: Users }]} title=\"Our Impact\" />"
+        "usage": "<MetricCardOne metrics={[{ id: '1', value: '100', title: 'million', description: 'Active users worldwide', icon: TrendingUp }, { id: '2', value: '700', title: 'thousand', description: 'Projects completed successfully', icon: Users }]} title=\"Our Impact\" description=\"See how we're making a difference\" />"
       },
       {
         "import": "import MetricCardTwo from '@/components/sections/metrics/MetricCardTwo';",
@@ -1965,13 +2007,13 @@
         "constraints": {
           "textRules": {
             "title": {
-              "required": false,
+              "required": true,
               "example": "Key Metrics",
               "minChars": 2,
               "maxChars": 35
             },
             "description": {
-              "required": false,
+              "required": true,
               "example": "Performance indicators at a glance",
               "minChars": 5,
               "maxChars": 250
@@ -2009,8 +2051,8 @@
         "propsSchema": {
           "metrics": "Array<{ id: string, value: string, description: string }>",
           "carouselMode?": "'auto' | 'buttons' (default: 'buttons')",
-          "title?": "string",
-          "description?": "string",
+          "title": "string",
+          "description": "string",
           "tag?": "string",
           "tagIcon?": "LucideIcon",
           "buttons?": "ButtonConfig[]",
@@ -2032,7 +2074,7 @@
           "textBoxButtonClassName?": "string",
           "textBoxButtonTextClassName?": "string"
         },
-        "usage": "<MetricCardTwo metrics={[{ id: '1', value: '98%', description: 'Customer Satisfaction Rate' }, { id: '2', value: '50K+', description: 'Active Users Worldwide' }]} title=\"Key Metrics\" />"
+        "usage": "<MetricCardTwo metrics={[{ id: '1', value: '98%', description: 'Customer Satisfaction Rate' }, { id: '2', value: '50K+', description: 'Active Users Worldwide' }]} title=\"Key Metrics\" description=\"See how we're making a difference\" />"
       },
       {
         "import": "import MetricCardThree from '@/components/sections/metrics/MetricCardThree';",
@@ -2043,13 +2085,13 @@
         "constraints": {
           "textRules": {
             "title": {
-              "required": false,
+              "required": true,
               "example": "Performance Metrics",
               "minChars": 2,
               "maxChars": 35
             },
             "description": {
-              "required": false,
+              "required": true,
               "example": "Track your key performance indicators",
               "minChars": 5,
               "maxChars": 250
@@ -2092,8 +2134,8 @@
         "propsSchema": {
           "metrics": "Array<{ id: string, icon: LucideIcon, title: string, value: string }>",
           "carouselMode?": "'auto' | 'buttons' (default: 'buttons')",
-          "title?": "string",
-          "description?": "string",
+          "title": "string",
+          "description": "string",
           "tag?": "string",
           "tagIcon?": "LucideIcon",
           "buttons?": "ButtonConfig[]",
@@ -2117,7 +2159,7 @@
           "textBoxButtonClassName?": "string",
           "textBoxButtonTextClassName?": "string"
         },
-        "usage": "<MetricCardThree metrics={[{ id: '1', icon: TrendingUp, title: 'Conversions', value: '7,000+' }, { id: '2', icon: Users, title: 'Active Users', value: '50,000+' }]} title=\"Performance Metrics\" />"
+        "usage": "<MetricCardThree metrics={[{ id: '1', icon: TrendingUp, title: 'Conversions', value: '7,000+' }, { id: '2', icon: Users, title: 'Active Users', value: '50,000+' }]} title=\"Performance Metrics\" description=\"See how we're making a difference\" />"
       }
     ],
     "team": [
@@ -2130,13 +2172,13 @@
         "constraints": {
           "textRules": {
             "title": {
-              "required": false,
+              "required": true,
               "example": "Meet Our Team",
               "minChars": 2,
               "maxChars": 35
             },
             "description": {
-              "required": false,
+              "required": true,
               "example": "The people behind our success",
               "minChars": 5,
               "maxChars": 250
@@ -2184,8 +2226,8 @@
         "propsSchema": {
           "members": "Array<{ id: string, name: string, role: string, imageSrc: string, imageAlt?: string }>",
           "carouselMode?": "'auto' | 'buttons' (default: 'buttons')",
-          "title?": "string",
-          "description?": "string",
+          "title": "string",
+          "description": "string",
           "tag?": "string",
           "tagIcon?": "LucideIcon",
           "buttons?": "ButtonConfig[]",
@@ -2209,7 +2251,7 @@
           "textBoxButtonClassName?": "string",
           "textBoxButtonTextClassName?": "string"
         },
-        "usage": "<TeamCardOne members={[{ id: '1', name: 'Sophie P.', role: 'Digital Nomad', imageSrc: '/team/sophie.jpg' }]} title=\"Meet Our Team\" />"
+        "usage": "<TeamCardOne members={[{ id: '1', name: 'Sophie P.', role: 'Digital Nomad', imageSrc: '/team/sophie.jpg' }]} title=\"Meet Our Team\" description=\"Get to know the people behind our success\" />"
       },
       {
         "import": "import TeamCardTwo from '@/components/sections/team/TeamCardTwo';",
@@ -2220,13 +2262,13 @@
         "constraints": {
           "textRules": {
             "title": {
-              "required": false,
+              "required": true,
               "example": "Meet Our Team",
               "minChars": 2,
               "maxChars": 35
             },
             "description": {
-              "required": false,
+              "required": true,
               "example": "The talented people behind our success",
               "minChars": 5,
               "maxChars": 250
@@ -2289,8 +2331,8 @@
         "propsSchema": {
           "members": "Array<{ id: string, name: string, role: string, description: string, imageSrc: string, imageAlt?: string, socialLinks?: Array<{ icon: LucideIcon, url: string }> }>",
           "carouselMode?": "'auto' | 'buttons' (default: 'buttons')",
-          "title?": "string",
-          "description?": "string",
+          "title": "string",
+          "description": "string",
           "tag?": "string",
           "tagIcon?": "LucideIcon",
           "buttons?": "ButtonConfig[]",
@@ -2318,7 +2360,7 @@
           "textBoxButtonClassName?": "string",
           "textBoxButtonTextClassName?": "string"
         },
-        "usage": "<TeamCardTwo members={[{ id: '1', name: 'Alisa Hester', role: 'Founder & CEO', description: 'Former co-founder of Opendoor. Early staff at Spotify and Clearbit.', imageSrc: '/team/alisa.jpg', socialLinks: [{ icon: Twitter, url: 'https://twitter.com/alisa' }, { icon: Linkedin, url: 'https://linkedin.com/in/alisa' }] }]} title=\"Meet Our Team\" />"
+        "usage": "<TeamCardTwo members={[{ id: '1', name: 'Alisa Hester', role: 'Founder & CEO', description: 'Former co-founder of Opendoor. Early staff at Spotify and Clearbit.', imageSrc: '/team/alisa.jpg', socialLinks: [{ icon: Twitter, url: 'https://twitter.com/alisa' }, { icon: Linkedin, url: 'https://linkedin.com/in/alisa' }] }]} title=\"Meet Our Team\" description=\"Get to know the people behind our success\" />"
       },
       {
         "import": "import TeamCardThree from '@/components/sections/team/TeamCardThree';",
@@ -2329,13 +2371,13 @@
         "constraints": {
           "textRules": {
             "title": {
-              "required": false,
+              "required": true,
               "example": "Our Team",
               "minChars": 2,
               "maxChars": 35
             },
             "description": {
-              "required": false,
+              "required": true,
               "example": "Meet the people who make it all possible",
               "minChars": 5,
               "maxChars": 250
@@ -2391,8 +2433,8 @@
         "propsSchema": {
           "members": "Array<{ id: string, name: string, role: string, imageSrc: string, imageAlt?: string, socialLinks?: Array<{ icon: LucideIcon, url: string }> }>",
           "carouselMode?": "'auto' | 'buttons' (default: 'buttons')",
-          "title?": "string",
-          "description?": "string",
+          "title": "string",
+          "description": "string",
           "tag?": "string",
           "tagIcon?": "LucideIcon",
           "buttons?": "ButtonConfig[]",
@@ -2417,7 +2459,7 @@
           "textBoxButtonClassName?": "string",
           "textBoxButtonTextClassName?": "string"
         },
-        "usage": "<TeamCardThree members={[{ id: '1', name: 'Amélie Laurent', role: 'Founder & CEO', imageSrc: '/team/amelie.jpg', socialLinks: [{ icon: Twitter, url: 'https://twitter.com/amelie' }, { icon: Linkedin, url: 'https://linkedin.com/in/amelie' }] }]} title=\"Our Team\" />"
+        "usage": "<TeamCardThree members={[{ id: '1', name: 'Amélie Laurent', role: 'Founder & CEO', imageSrc: '/team/amelie.jpg', socialLinks: [{ icon: Twitter, url: 'https://twitter.com/amelie' }, { icon: Linkedin, url: 'https://linkedin.com/in/amelie' }] }]} title=\"Our Team\" description=\"Get to know the people behind our success\" />"
       }
     ],
     "testimonial": [
@@ -2430,13 +2472,13 @@
         "constraints": {
           "textRules": {
             "title": {
-              "required": false,
+              "required": true,
               "example": "What Our Customers Say",
               "minChars": 2,
               "maxChars": 50
             },
             "description": {
-              "required": false,
+              "required": true,
               "example": "Real feedback from our valued customers",
               "minChars": 5,
               "maxChars": 250
@@ -2498,8 +2540,8 @@
         "propsSchema": {
           "testimonials": "Array<{ id: string, name: string, role: string, company: string, rating: number, imageSrc: string, imageAlt?: string }>",
           "carouselMode?": "'auto' | 'buttons' (default: 'buttons')",
-          "title?": "string",
-          "description?": "string",
+          "title": "string",
+          "description": "string",
           "tag?": "string",
           "tagIcon?": "LucideIcon",
           "buttons?": "ButtonConfig[]",
@@ -2536,13 +2578,13 @@
         "constraints": {
           "textRules": {
             "title": {
-              "required": false,
+              "required": true,
               "example": "Customer Reviews",
               "minChars": 2,
               "maxChars": 50
             },
             "description": {
-              "required": false,
+              "required": true,
               "example": "See what our customers have to say",
               "minChars": 5,
               "maxChars": 250
@@ -2602,8 +2644,8 @@
         "propsSchema": {
           "testimonials": "Array<{ id: string, name: string, role: string, testimonial: string, imageSrc?: string, imageAlt?: string, icon?: LucideIcon }>",
           "carouselMode?": "'auto' | 'buttons' (default: 'buttons')",
-          "title?": "string",
-          "description?": "string",
+          "title": "string",
+          "description": "string",
           "tag?": "string",
           "tagIcon?": "LucideIcon",
           "buttons?": "ButtonConfig[]",
@@ -2640,13 +2682,13 @@
         "constraints": {
           "textRules": {
             "title": {
-              "required": false,
+              "required": true,
               "example": "What People Are Saying",
               "minChars": 2,
               "maxChars": 50
             },
             "description": {
-              "required": false,
+              "required": true,
               "example": "Real feedback from real users",
               "minChars": 5,
               "maxChars": 250
@@ -2706,8 +2748,8 @@
         "propsSchema": {
           "testimonials": "Array<{ id: string, name: string, handle: string, testimonial: string, imageSrc?: string, imageAlt?: string, icon?: LucideIcon }>",
           "carouselMode?": "'auto' | 'buttons' (default: 'buttons')",
-          "title?": "string",
-          "description?": "string",
+          "title": "string",
+          "description": "string",
           "tag?": "string",
           "tagIcon?": "LucideIcon",
           "buttons?": "ButtonConfig[]",
@@ -2746,13 +2788,13 @@
         "constraints": {
           "textRules": {
             "title": {
-              "required": false,
+              "required": true,
               "example": "Trusted by Industry Leaders",
               "minChars": 2,
               "maxChars": 50
             },
             "description": {
-              "required": false,
+              "required": true,
               "example": "Join thousands of companies that trust our platform",
               "minChars": 5,
               "maxChars": 250
@@ -2787,8 +2829,8 @@
         },
         "propsSchema": {
           "logos": "string[]",
-          "title?": "string",
-          "description?": "string",
+          "title": "string",
+          "description": "string",
           "tag?": "string",
           "tagIcon?": "LucideIcon",
           "buttons?": "ButtonConfig[]",
@@ -2816,18 +2858,18 @@
         "import": "import SocialProofTwo from '@/components/sections/socialProof/SocialProofTwo';",
         "name": "SocialProofTwo",
         "path": "@/components/sections/socialProof/SocialProofTwo",
-        "description": "Grid logo showcase with separator lines or card backgrounds.",
-        "details": "Use for displaying 2-5 partner logos in a clean grid layout. Layout: Optional TextBox Header → Responsive Grid with Logos. Mobile: vertical column layout with full-width logos and horizontal separators between items. Desktop (lg+): horizontal row layout with logos distributed evenly (flex-basis based on count: 1/2, 1/3, 1/4, or 1/5) and vertical separators. Two display modes: 1) Default: logos with separator lines between items (no cards). 2) Card mode: each logo in a card with padding, gap spacing, no separators. Logo sizing: Mobile w-1/2, Desktop h-8 w-auto (non-card has max-w-full). Best for partner showcases, client lists with 2-5 logos where fixed grid layout is preferred over scrolling marquee.",
+        "description": "Grid logo showcase with card backgrounds.",
+        "details": "Use for displaying 2-5 partner logos in a clean grid layout with card backgrounds. Layout: Optional TextBox Header → Responsive Grid with Logo Cards. Mobile: vertical column layout with full-width logo cards. Desktop (md+): horizontal row layout with logos distributed evenly (flex-basis based on count: 1/2, 1/3, 1/4, or 1/5). Each logo displayed in a card with padding and gap-4 spacing between cards. Logo sizing: Mobile w-1/2, Desktop h-8 w-auto, 2xl h-10. Best for partner showcases, client lists with 2-5 logos where fixed grid layout with visual separation is preferred over scrolling marquee.",
         "constraints": {
           "textRules": {
             "title": {
-              "required": false,
+              "required": true,
               "example": "Trusted by Industry Leaders",
               "minChars": 2,
               "maxChars": 50
             },
             "description": {
-              "required": false,
+              "required": true,
               "example": "Join thousands of companies that trust our platform",
               "minChars": 5,
               "maxChars": 250
@@ -2845,24 +2887,18 @@
               "minItems": 2,
               "maxItems": 5,
               "example": "['/logos/company1.svg', '/logos/company2.svg', '/logos/company3.svg', '/logos/company4.svg', '/logos/company5.svg']",
-              "note": "Array of logo image paths. Minimum 2, maximum 5 logos for optimal grid layout."
-            },
-            "showCard": {
-              "required": false,
-              "default": false,
-              "note": "Show card background around each logo. When true: cards with padding and gap spacing, no separators. When false: separator lines between logos."
+              "note": "Array of logo image paths. Minimum 2, maximum 5 logos for optimal grid layout. Each logo is displayed in a card with padding."
             }
           }
         },
         "propsSchema": {
           "logos": "string[]",
-          "title?": "string",
-          "description?": "string",
+          "title": "string",
+          "description": "string",
           "tag?": "string",
           "tagIcon?": "LucideIcon",
           "buttons?": "ButtonConfig[]",
           "layout?": "'default' | 'split' (default: 'default')",
-          "showCard?": "boolean (default: false)",
           "ariaLabel?": "string (default: 'Social proof section')",
           "className?": "string",
           "containerClassName?": "string",
@@ -2877,10 +2913,9 @@
           "logoRowClassName?": "string",
           "logoItemClassName?": "string",
           "logoCardClassName?": "string",
-          "logoImageClassName?": "string",
-          "separatorClassName?": "string"
+          "logoImageClassName?": "string"
         },
-        "usage": "<SocialProofTwo logos={['/logos/company1.svg', '/logos/company2.svg', '/logos/company3.svg', '/logos/company4.svg', '/logos/company5.svg']} />"
+        "usage": "<SocialProofTwo logos={['/logos/company1.svg', '/logos/company2.svg', '/logos/company3.svg', '/logos/company4.svg', '/logos/company5.svg']} title=\"Trusted By\" description=\"Join thousands of satisfied customers\" />"
       }
     ],
     "faq": [
@@ -2893,13 +2928,13 @@
         "constraints": {
           "textRules": {
             "title": {
-              "required": false,
+              "required": true,
               "example": "Frequently Asked Questions",
               "minChars": 2,
               "maxChars": 50
             },
             "description": {
-              "required": false,
+              "required": true,
               "example": "Find answers to common questions about our products and services",
               "minChars": 5,
               "maxChars": 250
@@ -2928,8 +2963,8 @@
         },
         "propsSchema": {
           "faqs": "FaqItem[] (FaqItem: {id: string, title: string, content: string})",
-          "title?": "string",
-          "description?": "string",
+          "title": "string",
+          "description": "string",
           "tag?": "string",
           "tagIcon?": "LucideIcon",
           "buttons?": "ButtonConfig[]",
@@ -2965,13 +3000,13 @@
         "constraints": {
           "textRules": {
             "title": {
-              "required": false,
+              "required": true,
               "example": "Frequently Asked Questions",
               "minChars": 2,
               "maxChars": 50
             },
             "description": {
-              "required": false,
+              "required": true,
               "example": "Find answers to common questions about our products and services",
               "minChars": 5,
               "maxChars": 250
@@ -3000,8 +3035,8 @@
         },
         "propsSchema": {
           "faqs": "FaqItem[] (FaqItem: {id: string, title: string, content: string})",
-          "title?": "string",
-          "description?": "string",
+          "title": "string",
+          "description": "string",
           "tag?": "string",
           "tagIcon?": "LucideIcon",
           "buttons?": "ButtonConfig[]",
@@ -3037,13 +3072,13 @@
         "constraints": {
           "textRules": {
             "title": {
-              "required": false,
+              "required": true,
               "example": "Frequently Asked Questions",
               "minChars": 2,
               "maxChars": 50
             },
             "description": {
-              "required": false,
+              "required": true,
               "example": "Find answers to common questions about our products and services",
               "minChars": 5,
               "maxChars": 250
@@ -3093,8 +3128,8 @@
           "imageAlt?": "string (default: '')",
           "videoAriaLabel?": "string (default: 'FAQ section video')",
           "mediaPosition?": "'left' | 'right' (default: 'left')",
-          "title?": "string",
-          "description?": "string",
+          "title": "string",
+          "description": "string",
           "tag?": "string",
           "tagIcon?": "LucideIcon",
           "buttons?": "ButtonConfig[]",
@@ -3205,13 +3240,13 @@
         "constraints": {
           "textRules": {
             "title": {
-              "required": false,
+              "required": true,
               "example": "Latest Articles",
               "minChars": 2,
               "maxChars": 50
             },
             "description": {
-              "required": false,
+              "required": true,
               "example": "Insights and updates from our team",
               "minChars": 5,
               "maxChars": 250
@@ -3235,8 +3270,8 @@
         "propsSchema": {
           "blogs": "BlogCard[] (BlogCard: {id: string, category: string, title: string, excerpt: string, imageSrc: string, imageAlt?: string, authorName: string, authorAvatar: string, date: string, onBlogClick?: () => void})",
           "carouselMode?": "'auto' | 'buttons' (default: 'buttons')",
-          "title?": "string",
-          "description?": "string",
+          "title": "string",
+          "description": "string",
           "tag?": "string",
           "tagIcon?": "LucideIcon",
           "buttons?": "ButtonConfig[]",
@@ -3276,13 +3311,13 @@
         "constraints": {
           "textRules": {
             "title": {
-              "required": false,
+              "required": true,
               "example": "Latest Articles",
               "minChars": 2,
               "maxChars": 50
             },
             "description": {
-              "required": false,
+              "required": true,
               "example": "Insights and updates from our team",
               "minChars": 5,
               "maxChars": 250
@@ -3306,8 +3341,8 @@
         "propsSchema": {
           "blogs": "BlogCard[] (BlogCard: {id: string, tags: string[], title: string, excerpt: string, imageSrc: string, imageAlt?: string, authorName: string, date: string, onBlogClick?: () => void})",
           "carouselMode?": "'auto' | 'buttons' (default: 'buttons')",
-          "title?": "string",
-          "description?": "string",
+          "title": "string",
+          "description": "string",
           "tag?": "string",
           "tagIcon?": "LucideIcon",
           "buttons?": "ButtonConfig[]",

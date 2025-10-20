@@ -17,8 +17,8 @@ type Metric = {
 interface MetricCardOneProps {
     metrics: Metric[];
     carouselMode?: "auto" | "buttons";
-    title?: string;
-    description?: string;
+    title: string;
+    description: string;
     tag?: string;
     tagIcon?: LucideIcon;
     buttons?: ButtonConfig[];
@@ -77,10 +77,10 @@ const MetricCardItem = memo(({
             >
                 {metric.value}
             </div>
-            <p className={cls("mt-[calc(var(--text-4xl)*-0.75)] lg:mt-[calc(var(--text-4xl)*-1.15)] text-4xl font-medium text-center", titleClassName)}>
+            <p className={cls("mt-[calc(var(--text-4xl)*-0.75)] md:mt-[calc(var(--text-4xl)*-1.15)] text-4xl font-medium text-center", titleClassName)}>
                 {metric.title}
             </p>
-            <p className={cls("max-w-9/10 lg:max-w-7/10 text-base text-center leading-[1.1] mt-2", descriptionClassName)}>
+            <p className={cls("max-w-9/10 md:max-w-7/10 text-base text-center leading-[1.1] mt-2", descriptionClassName)}>
                 {metric.description}
             </p>
             <div className={cls("absolute left-6 bottom-6 h-10 aspect-square primary-button rounded-theme flex items-center justify-center", iconContainerClassName)}>

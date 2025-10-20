@@ -21,8 +21,8 @@ interface FaqSplitMediaProps {
     imageAlt?: string;
     videoAriaLabel?: string;
     mediaPosition?: "left" | "right";
-    title?: string;
-    description?: string;
+    title: string;
+    description: string;
     tag?: string;
     tagIcon?: LucideIcon;
     buttons?: ButtonConfig[];
@@ -116,9 +116,9 @@ const FaqSplitMedia = ({
                     />
                 )}
 
-                <div className={cls("grid grid-cols-1 lg:grid-cols-5 gap-4 lg:auto-rows-fr", contentClassName)}>
+                <div className={cls("grid grid-cols-1 md:grid-cols-5 gap-4 md:auto-rows-fr", contentClassName)}>
                     {mediaPosition === "left" && (
-                        <div className={cls("overflow-hidden rounded-theme card relative h-80 lg:h-auto col-span-1 lg:col-span-2", mediaWrapperClassName)}>
+                        <div className={cls("overflow-hidden rounded-theme card relative h-80 md:h-auto col-span-1 md:col-span-2", mediaWrapperClassName)}>
                             <MediaContent
                                 imageSrc={imageSrc}
                                 videoSrc={videoSrc}
@@ -128,7 +128,7 @@ const FaqSplitMedia = ({
                             />
                         </div>
                     )}
-                    <div className={cls("col-span-1 lg:col-span-3 flex flex-col gap-4", faqsContainerClassName)}>
+                    <div className={cls("col-span-1 md:col-span-3 flex flex-col gap-4", faqsContainerClassName)}>
                         {faqs.map((faq, index) => (
                             <Fragment key={faq.id}>
                                 <Accordion
@@ -152,7 +152,7 @@ const FaqSplitMedia = ({
                         ))}
                     </div>
                     {mediaPosition === "right" && (
-                        <div className={cls("overflow-hidden rounded-theme card relative h-80 lg:h-auto col-span-1 lg:col-span-2", mediaWrapperClassName)}>
+                        <div className={cls("overflow-hidden rounded-theme card relative h-80 md:h-auto col-span-1 md:col-span-2", mediaWrapperClassName)}>
                             <MediaContent
                                 imageSrc={imageSrc}
                                 videoSrc={videoSrc}

@@ -79,7 +79,7 @@ const FaqSplitText = ({
     }, []);
 
     const textContent = (
-        <div className={cls("w-full lg:w-2/5 flex flex-col gap-3", textContainerClassName)}>
+        <div className={cls("w-full md:w-2/5 flex flex-col gap-3", textContainerClassName)}>
             <TextAnimation
                 type={theme.defaultTextAnimation as AnimationType}
                 text={sideTitle}
@@ -105,7 +105,7 @@ const FaqSplitText = ({
     );
 
     const faqsContent = (
-        <div className={cls("w-full lg:w-3/5 flex flex-col gap-4", faqsContainerClassName)}>
+        <div className={cls("w-full md:w-3/5 flex flex-col gap-4", faqsContainerClassName)}>
             {faqs.map((faq, index) => (
                 <Fragment key={faq.id}>
                     <Accordion
@@ -133,7 +133,7 @@ const FaqSplitText = ({
     return (
         <section aria-label={ariaLabel} className={cls("w-full py-30", className)}>
             <div className={cls("w-content-width mx-auto", containerClassName)}>
-                <div className={cls("flex flex-col lg:flex-row gap-6 lg:gap-10", contentClassName)}>
+                <div className={cls("flex flex-col md:flex-row gap-6 md:gap-10", contentClassName)}>
                     {textPosition === "left" && textContent}
                     {faqsContent}
                     {textPosition === "right" && textContent}

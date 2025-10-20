@@ -44,7 +44,7 @@ const FavoriteButton = memo(({
                 />
                 <Heart
                     className={cls(
-                        "h-4/10 text-red-500 absolute transition-all duration-300",
+                        "h-4/10 text-accent absolute transition-all duration-300",
                         isFavorited ? "opacity-100 blur-0" : "opacity-0 blur-xs"
                     )}
                     fill="currentColor"

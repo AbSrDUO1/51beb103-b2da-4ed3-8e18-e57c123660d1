@@ -24,8 +24,8 @@ type BlogCard = {
 interface BlogCardTwoProps {
     blogs: BlogCard[];
     carouselMode?: "auto" | "buttons";
-    title?: string;
-    description?: string;
+    title: string;
+    description: string;
     tag?: string;
     tagIcon?: LucideIcon;
     buttons?: ButtonConfig[];

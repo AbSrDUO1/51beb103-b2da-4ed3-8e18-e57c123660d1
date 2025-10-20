@@ -43,7 +43,7 @@ const TextAbout = ({
           type={theme.defaultTextAnimation}
           text={title}
           variant="words-trigger"
-          className={cls("text-2xl lg:text-5xl font-medium text-center leading-[1.175]", titleClassName)}
+          className={cls("text-2xl md:text-5xl font-medium text-center leading-[1.175]", titleClassName)}
         />
 
         {buttons && buttons.length > 0 && (

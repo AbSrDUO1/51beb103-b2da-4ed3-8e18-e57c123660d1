@@ -42,7 +42,7 @@ const NavbarStyleApple = ({
         </div>
 
         <div
-          className="hidden lg:flex items-center gap-6 transition-all duration-500 ease-in-out"
+          className="hidden md:flex items-center gap-6 transition-all duration-500 ease-in-out"
           role="navigation"
         >
           {navItems.map((item, index) => (
@@ -56,7 +56,7 @@ const NavbarStyleApple = ({
         </div>
 
         <button
-          className="flex lg:hidden shrink-0 h-8 aspect-square rounded-theme bg-foreground items-center justify-center cursor-pointer"
+          className="flex md:hidden shrink-0 h-8 aspect-square rounded-theme bg-foreground items-center justify-center cursor-pointer"
           onClick={handleMenuToggle}
           aria-label="Toggle menu"
           aria-expanded={menuOpen}

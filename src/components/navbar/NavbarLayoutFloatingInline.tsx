@@ -55,7 +55,7 @@ const NavbarLayoutFloatingInline = memo<NavbarLayoutFloatingInlineProps>(
         )}>
           <Logo logoSrc={logoSrc} logoAlt={logoAlt} brandName={brandName} />
 
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden lg:flex gap-6 items-center">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:flex gap-6 items-center">
             {navItems.map((item, index) => (
               <ButtonTextUnderline
                 key={index}

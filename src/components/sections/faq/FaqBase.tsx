@@ -15,8 +15,8 @@ interface FaqItem {
 
 interface FaqBaseProps {
     faqs: FaqItem[];
-    title?: string;
-    description?: string;
+    title: string;
+    description: string;
     tag?: string;
     tagIcon?: LucideIcon;
     buttons?: ButtonConfig[];

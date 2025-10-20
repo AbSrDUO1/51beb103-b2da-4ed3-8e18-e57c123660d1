@@ -63,14 +63,14 @@ const ContactForm = ({
                     type={theme.defaultTextAnimation as AnimationType}
                     text={title}
                     variant="trigger"
-                    className={cls("text-4xl lg:text-5xl font-medium leading-[1.175] text-balance", centered && "w-full lg:w-8/10", titleClassName)}
+                    className={cls("text-4xl md:text-5xl font-medium leading-[1.175] text-balance", centered && "w-full md:w-8/10", titleClassName)}
                 />
 
                 <TextAnimation
                     type={theme.defaultTextAnimation as AnimationType}
                     text={description}
                     variant="words-trigger"
-                    className={cls("text-base leading-[1.15] mb-1 text-balance", centered && "w-full lg:w-8/10", descriptionClassName)}
+                    className={cls("text-base leading-[1.15] mb-1 text-balance", centered && "w-full md:w-8/10", descriptionClassName)}
                 />
             </div>
 

@@ -11,7 +11,6 @@
   --secondary-cta: #ffffff;;
   --accent: #eab308;;
   --background-accent: #ca8a04;;
-
   /* text sizing */
   --text-2xs: clamp(0.465rem, 0.62vw, 0.62rem);
   --text-xs: clamp(0.54rem, 0.72vw, 0.72rem);

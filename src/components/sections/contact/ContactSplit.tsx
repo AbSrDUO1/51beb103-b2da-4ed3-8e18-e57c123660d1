@@ -70,7 +70,7 @@ const ContactSplit = ({
     mediaClassName = "",
 }: ContactSplitProps) => {
     const contactContent = (
-        <div className="card rounded-theme p-6 py-15 lg:py-6 flex items-center justify-center">
+        <div className="card rounded-theme p-6 py-15 md:py-6 flex items-center justify-center">
             <ContactForm
                 tag={tag}
                 tagIcon={tagIcon}
@@ -85,7 +85,7 @@ const ContactSplit = ({
                 tagClassName={tagClassName}
                 titleClassName={titleClassName}
                 descriptionClassName={descriptionClassName}
-                formWrapperClassName={cls("w-full lg:w-8/10 2xl:w-7/10", formWrapperClassName)}
+                formWrapperClassName={cls("w-full md:w-8/10 2xl:w-7/10", formWrapperClassName)}
                 formClassName={formClassName}
                 inputClassName={inputClassName}
                 buttonClassName={buttonClassName}
@@ -110,7 +110,7 @@ const ContactSplit = ({
     return (
         <section aria-label={ariaLabel} className={cls("w-full py-30", className)}>
             <div className={cls("w-content-width mx-auto", containerClassName)}>
-                <div className={cls("grid grid-cols-1 lg:grid-cols-2 gap-6 lg:auto-rows-fr", contentClassName)}>
+                <div className={cls("grid grid-cols-1 md:grid-cols-2 gap-6 md:auto-rows-fr", contentClassName)}>
                     {mediaPosition === "left" && mediaContent}
                     {contactContent}
                     {mediaPosition === "right" && mediaContent}

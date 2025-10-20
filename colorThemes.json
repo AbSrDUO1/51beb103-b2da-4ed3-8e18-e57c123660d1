@@ -144,7 +144,7 @@
       "--primary-cta": "#e6e6e6",
       "--secondary-cta": "#1a1a1a",
       "--accent": "#5a71e6",
-      "--background-accent": "#5a71e6"
+      "--background-accent": "#737373"
     },
     "lightBlue": {
       "--background": "#010912",

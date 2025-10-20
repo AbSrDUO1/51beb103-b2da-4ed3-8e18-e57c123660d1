@@ -46,16 +46,11 @@ const FooterLogoEmphasis = memo<FooterLogoEmphasisProps>(
     iconClassName = "",
     buttonClassName = "",
   }) {
-    const columnCount = Math.min(columns.length, 5);
-    const gridColsClass = columnCount === 1
-      ? "grid-cols-1"
-      : columnCount === 2
-      ? "grid-cols-1 lg:grid-cols-2"
-      : columnCount === 3
-      ? "grid-cols-1 lg:grid-cols-3"
-      : columnCount === 4
-      ? "grid-cols-2 lg:grid-cols-4"
-      : "grid-cols-2 lg:grid-cols-5";
+    const columnCount = columns.length;
+    const useFlex = columnCount <= 3;
+    const gridColsClass = columnCount === 4
+      ? "grid-cols-2 md:grid-cols-4"
+      : "grid-cols-2 md:grid-cols-5";
 
     return (
       <footer
@@ -70,7 +65,7 @@ const FooterLogoEmphasis = memo<FooterLogoEmphasisProps>(
         <div
           className={cls(
             "w-content-width mx-auto flex flex-col relative z-10",
-            logoSrc ? "gap-10 lg:gap-20" : "gap-0",
+            logoSrc ? "gap-10 md:gap-20" : "gap-0",
             containerClassName
           )}
         >
@@ -82,7 +77,16 @@ const FooterLogoEmphasis = memo<FooterLogoEmphasisProps>(
           />
 
           <div
-            className={cls("w-full grid gap-[var(--width-10)] lg:gap-[calc(var(--width-10)/2)] mb-10", gridColsClass, columnsClassName)}
+            className={cls(
+              "w-full mb-10",
+              useFlex
+                ? cls(
+                    "flex flex-col md:flex-row gap-8 md:gap-[var(--width-10)]",
+                    columnCount === 1 ? "md:justify-center" : "md:justify-between"
+                  )
+                : cls("grid gap-[var(--width-10)] md:gap-[calc(var(--width-10)/2)]", gridColsClass),
+              columnsClassName
+            )}
           >
             {columns.map((column, index) => (
               <div

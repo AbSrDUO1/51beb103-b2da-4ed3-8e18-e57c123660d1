@@ -20,8 +20,8 @@ type PricingPlan = {
 interface PricingCardOneProps {
     plans: PricingPlan[];
     carouselMode?: "auto" | "buttons";
-    title?: string;
-    description?: string;
+    title: string;
+    description: string;
     tag?: string;
     tagIcon?: LucideIcon;
     buttons?: ButtonConfig[];
@@ -67,7 +67,7 @@ const PricingCardItem = memo(({
     featureItemClassName = "",
 }: PricingCardItemProps) => {
     return (
-        <div className={cls("card text-foreground rounded-theme-capped p-6 flex flex-col gap-6 lg:gap-8", cardClassName)}>
+        <div className={cls("card text-foreground rounded-theme-capped p-6 flex flex-col gap-6 md:gap-8", cardClassName)}>
             <PricingBadge
                 badge={plan.badge}
                 badgeIcon={plan.badgeIcon}

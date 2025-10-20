@@ -21,8 +21,8 @@ type Testimonial = {
 interface TestimonialCardOneProps {
     testimonials: Testimonial[];
     carouselMode?: "auto" | "buttons";
-    title?: string;
-    description?: string;
+    title: string;
+    description: string;
     tag?: string;
     tagIcon?: LucideIcon;
     buttons?: ButtonConfig[];
@@ -85,7 +85,7 @@ const TestimonialCard = memo(({
             <div className={cls("absolute bottom-6 left-6 right-6 card p-6 flex flex-col gap-3 rounded-theme-capped", overlayClassName)}>
                 <div className={cls("flex gap-1", ratingClassName)}>
                     {Array.from({ length: testimonial.rating }).map((_, index) => (
-                        <Star key={index} className="h-5 w-auto fill-foreground text-foreground" strokeWidth={1.5} />
+                        <Star key={index} className="h-5 w-auto fill-accent text-accent" strokeWidth={1.5} />
                     ))}
                 </div>
 

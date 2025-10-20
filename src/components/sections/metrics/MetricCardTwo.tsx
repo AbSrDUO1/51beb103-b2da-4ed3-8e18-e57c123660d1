@@ -15,8 +15,8 @@ type Metric = {
 interface MetricCardTwoProps {
     metrics: Metric[];
     carouselMode?: "auto" | "buttons";
-    title?: string;
-    description?: string;
+    title: string;
+    description: string;
     tag?: string;
     tagIcon?: LucideIcon;
     buttons?: ButtonConfig[];
@@ -53,8 +53,8 @@ const MetricCardItem = memo(({
     metricDescriptionClassName = "",
 }: MetricCardItemProps) => {
     return (
-        <div className={cls("h-50 lg:h-60 2xl:h-70 card text-foreground rounded-theme-capped p-6 flex flex-col justify-between", cardClassName)}>
-            <div className={cls("text-9xl lg:text-7xl font-medium", valueClassName)}>
+        <div className={cls("h-50 md:h-60 2xl:h-70 card text-foreground rounded-theme-capped p-6 flex flex-col justify-between", cardClassName)}>
+            <div className={cls("text-9xl md:text-7xl font-medium", valueClassName)}>
                 {metric.value}
             </div>
             <p className={cls("text-xl text-foreground", metricDescriptionClassName)}>

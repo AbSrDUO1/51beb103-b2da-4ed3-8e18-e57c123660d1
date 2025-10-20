@@ -15,8 +15,8 @@ interface FaqItem {
 
 interface FaqDoubleProps {
     faqs: FaqItem[];
-    title?: string;
-    description?: string;
+    title: string;
+    description: string;
     tag?: string;
     tagIcon?: LucideIcon;
     buttons?: ButtonConfig[];
@@ -101,7 +101,7 @@ const FaqDouble = ({
                     />
                 )}
 
-                <div className={cls("card p-4 rounded-theme flex flex-col lg:flex-row gap-4", faqsContainerClassName)}>
+                <div className={cls("card p-4 rounded-theme flex flex-col md:flex-row gap-4", faqsContainerClassName)}>
                     <div className={cls("flex-1 flex flex-col gap-4", columnClassName)}>
                         {firstHalf.map((faq, index) => (
                             <Accordion

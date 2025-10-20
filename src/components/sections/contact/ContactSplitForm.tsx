@@ -102,7 +102,7 @@ const ContactSplitForm = ({
     };
 
     const formContent = (
-        <div className={cls("card rounded-theme p-6 lg:p-10 flex items-center justify-center", formCardClassName)}>
+        <div className={cls("card rounded-theme p-6 md:p-10 flex items-center justify-center", formCardClassName)}>
             <form onSubmit={handleSubmit} className="w-full flex flex-col gap-6">
                 <div className="w-full flex flex-col gap-0 text-center">
                     <TextAnimation
@@ -161,13 +161,13 @@ const ContactSplitForm = ({
     );
 
     const mediaContent = (
-        <div className={cls("overflow-hidden rounded-theme card lg:relative lg:h-full", mediaWrapperClassName)}>
+        <div className={cls("overflow-hidden rounded-theme card md:relative md:h-full", mediaWrapperClassName)}>
             <MediaContent
                 imageSrc={imageSrc}
                 videoSrc={videoSrc}
                 imageAlt={imageAlt}
                 videoAriaLabel={videoAriaLabel}
-                imageClassName={cls("w-full lg:absolute lg:inset-0 lg:h-full object-cover", mediaClassName)}
+                imageClassName={cls("w-full md:absolute md:inset-0 md:h-full object-cover", mediaClassName)}
             />
         </div>
     );
@@ -175,7 +175,7 @@ const ContactSplitForm = ({
     return (
         <section aria-label={ariaLabel} className={cls("w-full py-30", className)}>
             <div className={cls("w-content-width mx-auto", containerClassName)}>
-                <div className={cls("grid grid-cols-1 lg:grid-cols-2 gap-6 lg:auto-rows-fr", contentClassName)}>
+                <div className={cls("grid grid-cols-1 md:grid-cols-2 gap-6 md:auto-rows-fr", contentClassName)}>
                     {mediaPosition === "left" && mediaContent}
                     {formContent}
                     {mediaPosition === "right" && mediaContent}
